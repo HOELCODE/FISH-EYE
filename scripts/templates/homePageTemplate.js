@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+//fonction pour créer le template de la card des photographes
 function photographerTemplate(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
 
