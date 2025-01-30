@@ -67,6 +67,7 @@
     color: #000000;
     margin-right: 20px;
 }
+
 .dropdown {
     display: flex;
     flex-direction: row;
@@ -140,6 +141,13 @@ article {
     margin: auto;
 }
 
+#contact-modal {
+    position: relative;
+    z-index: 2;
+    display: none;
+}
+
+
 .modal header {
     justify-content: space-between;
     width: 100%;
@@ -186,4 +194,4 @@ form input {
     border-radius: 5px;
 }
 
-/*Modal*/
+/*Form*/
