@@ -45,15 +45,21 @@
     <div id="contact-modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
+          <h2></h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
 				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
+					<div id="contact-form">
+						<label for="prenom">Prénom</label>
+						<input  type="text" id="prenom" name="prenom"/>
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom"/>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email"/>
+            <label for="texte">Votre message</label>
+            <textarea id="texte" name="texte"></textarea>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" type="submit" onclick="sendForm(event)">Envoyer</button>
 				</form>
 			</div>
 		</div>

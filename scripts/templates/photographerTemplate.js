@@ -13,6 +13,11 @@ async function createDomHeader(photographe) {
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
         <img class="image-photographe" src="assets/photographes/photos-photographes/${photographe.portrait}" alt="photo de ${photographe.name}">
     `
+
+    //Ajouter le prénom dans h2 du formulaire
+    const form = document.getElementById("contact-modal");
+    form.querySelector("h2").innerHTML = `Contactez-moi<br>${photographe.name}`; 
+
     
     //Associer le header
     headerContainer.innerHTML = photographerHeader;

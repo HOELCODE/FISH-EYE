@@ -160,7 +160,7 @@ article {
 .modal header h2 {
     font-size: 64px;
     font-weight: normal;
-    text-align: center;
+    text-align: start;
 }
 
 /*Modal*/
@@ -172,6 +172,7 @@ form {
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
+    margin-top: 40px;
 }
 
 form label {
@@ -190,6 +191,13 @@ form div {
 form input {
     width: 100%;
     height: 68px;
+    border: none;
+    border-radius: 5px;
+}
+
+#texte {
+    width: 100%;
+    height: 200px;
     border: none;
     border-radius: 5px;
 }
