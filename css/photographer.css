@@ -114,15 +114,23 @@ article {
     color: #901C1C;
 }
 
+.galerie-likes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .galerie-likes span {
     font-size: 24px;
     font-weight: 500;
     color: #901C1C;
+    margin-right: 5px;
 }
 
 .galerie-likes i {
     color: #901C1C;
     font-size: 24px;
+    cursor: pointer;
 }
 
 /* Galerie */

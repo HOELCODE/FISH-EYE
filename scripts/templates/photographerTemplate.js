@@ -38,7 +38,7 @@ async function createDomGalerie(collection, artiste) {
             <p class="galerie-description">${collection.title}</p>
             <div class="galerie-likes">
               <span class="galerie-like">${collection.likes}</span>
-              <i class="fa-solid fa-heart"></i>
+              <div class="heart-container"><i class="fa-solid fa-heart"></i></div>
             </div>
           </div>
         </article>
