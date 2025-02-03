@@ -10,9 +10,6 @@ function countLikes() {
     totalLikes.innerHTML = total;
 }
 
-// Exécution de la fonction après un délai de 5 secondes
-setTimeout(countLikes, 1500);
-
 // Fonction pour ajouter un like sur une image de la galerie
 function addLike() {
     const boutonLike = document.querySelectorAll(".galerie-likes .fa-solid");
@@ -32,4 +29,6 @@ function addLike() {
 }
 
 
+// Exécution de la fonction après un délai de 5 secondes
+setTimeout(countLikes, 1500);
 setTimeout(addLike, 1500);

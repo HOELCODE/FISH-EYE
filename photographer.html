@@ -24,16 +24,14 @@
             <div class="dropdown">
               <button class="btn-drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false"
                 aria-controls="filter options" aria-label="Sort by">
-                <span id="current-filter">Trier par</span>
-                <span class="fa-solid fa-chevron-up" aria-hidden="true"></span>
+                <span id="current-filter"></span>
+                <span class="fa-solid fa-chevron-up chevron" aria-hidden="true"></span>
               </button>
+              <div class="div-bar"></div>
   
               <ul class="dropdown-content" aria-hidden="true">
                 <li role="option">
                   <button type="button" tabindex="-1" aria-label="Sort by title">Titre</button>
-                </li>
-                <li role="option">
-                  <button type="button" tabindex="-1" aria-label="Sort by popularity">Popularité</button>
                 </li>
               </ul>
             </div>
@@ -74,5 +72,6 @@
     <script src="/scripts/pages/photographer.js" defer></script>
     <script src="/scripts/utils/contactForm.js" defer></script>
     <script src="/scripts/utils/likes.js" defer></script>
+    <script src="/scripts/utils/filter.js" defer></script>
   </body>
 </html>
