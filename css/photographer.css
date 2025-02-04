@@ -332,3 +332,65 @@ footer {
 }
 
 /*Likes footer*/
+
+/* Lightbox */
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+    background-color: #fff;
+    height: 500px;
+    align-items: center;
+    display: flex;
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-image {
+    width: 70%;
+    height: auto;
+}
+
+.prev-btn,
+.next-btn,
+.close-btn {
+    background-color: #fff;
+    border: none;
+    color: #901C1C;;
+    font-size: 4rem;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.prev-btn,
+.next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.prev-btn {
+    left: 10px;
+    color: #901C1C;
+}
+
+.next-btn {
+    right: 10px;
+    color: #901C1C;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 4.5rem;
+}
+
+/*/ Lightbox */
