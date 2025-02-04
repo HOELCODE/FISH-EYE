@@ -91,6 +91,8 @@
     align-items: center;
     justify-content: space-around;
     cursor: pointer;
+    color: #fff;
+    font-weight: 900;
 }
 
 .down {
