@@ -1,4 +1,4 @@
-// fonction pour afficher au chargement Popularité
+//Fonction affichage au chargement
 function affichageChargement() {
     const option = document.getElementById('current-filter');
     const dropdown = document.querySelector('.dropdown-content');
@@ -6,68 +6,32 @@ function affichageChargement() {
     dropdown.style.display = 'none';
 }
 
-// fonction pour cacher la liste déroulante 
+window.onload = function () {
+    affichageChargement();
+};
 
-function cacherDropdown() {
+//Fonction pour cacher ou afficher la liste déroulante
+function dropDown() {
     const button = document.querySelector('.btn-drop');
     const list = document.querySelector('.dropdown-content');
     const chevron = document.querySelector('.chevron');
 
-    //condition pour verifier si chevron contient la classe fa-chevron-up
-    if (chevron.classList.contains('fa-chevron-down')) {
-        console.log("rentré dans if cacher")
-        button.addEventListener('click', () => {
-            console.log("rentré dans click cacher")
-            list.style.display = 'none';
-            button.classList.remove('down');
-            chevron.classList.add('fa-chevron-up');
-            chevron.classList.remove('fa-chevron-down');
-        });
-    }
-}
-
-// fonction pour afficher le liste déroulante
-
-function affichaggeDropdown() {
-    const button = document.querySelector('.btn-drop');
-    const list = document.querySelector('.dropdown-content');
-    const chevron = document.querySelector('.chevron');
-
-    //condition pour verifier si chevron contient la classe fa-chevron-up
-    if (chevron.classList.contains('fa-chevron-up')) {
-        console.log("rentré dans if affichage")
-        button.addEventListener('click', () => {
-            console.log("rentré dans click affichage")
+    button.addEventListener('click', () => {
+        if (list.style.display === 'none') {
             list.style.display = 'flex';
-            button.classList.add('down');
-            chevron.classList.add('fa-chevron-down');
+            chevron.classList.remove('fa-chevron-down');
+            chevron.classList.add('fa-chevron-up');
+            console.log("rentré dans if");
+        } else if (list.style.display === 'flex') {
+            console.log("rentré dans else")
+            list.style.display = 'none';
             chevron.classList.remove('fa-chevron-up');
-        });
-    }
-}
-
-
-//Fonction pour afficher en fonction de l'élément cliqué dans la liste déroulante
-function filterPar() {
-    const bouton = document.querySelector("#current-filter");
-    const filtre = document.querySelector(".dropdown-content button");
-
-    //ecouter le click sur filtre
-    filtre.addEventListener("click", () => {
-
-        if (bouton.textContent.includes("Popularité")) {
-            bouton.innerHTML = "Titre";
-            filtre.innerHTML = "Popularité";
-            filterTitre();
-            cacherDropdown();
-        } else {
-            bouton.innerHTML = "Popularité";
-            filtre.innerHTML = "Titre";
-            filterPopularite();
-            cacherDropdown();
+            chevron.classList.add('fa-chevron-down');
         }
     });
 }
+
+dropDown();
 
 //fonction pour filter par popularitérité
 function filterPopularite() {
@@ -107,13 +71,36 @@ function filterTitre() {
     articles.forEach(article => galerie.appendChild(article));
 }
 
+//fonction pour fermer la liste déroulante après un click
+function cacherDropdown() {
+    const list = document.querySelector('.dropdown-content');
+    const chevron = document.querySelector('.chevron');
+    
+    list.style.display = 'none';
+    chevron.classList.remove('fa-chevron-up');
+    chevron.classList.add('fa-chevron-down');
+}
 
-//déclaration des fonctions
-window.onload = function() {
-    affichageChargement(); // Remplacez par le nom de votre fonction
-};
+//Fonction pour afficher en fonction de l'élément cliqué dans la liste déroulante
+function filterPar() {
+    const bouton = document.querySelector("#current-filter");
+    const filtre = document.querySelector(".dropdown-content button");
 
+    //ecouter le click sur filtre
+    filtre.addEventListener("click", () => {
+
+        if (bouton.textContent.includes("Popularité")) {
+            bouton.innerHTML = "Titre";
+            filtre.innerHTML = "Popularité";
+            filterTitre();
+            cacherDropdown();
+        } else {
+            bouton.innerHTML = "Popularité";
+            filtre.innerHTML = "Titre";
+            filterPopularite();
+            cacherDropdown();
+        }
+    });
+}
 
 filterPar();
-affichaggeDropdown();
-cacherDropdown();

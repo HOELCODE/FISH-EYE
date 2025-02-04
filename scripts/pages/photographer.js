@@ -32,19 +32,25 @@ async function getGalerie() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
 
-
     media.forEach(element => {
         if (element.photographerId === parseInt(id)) {
-            var lid = element.photographerId;
-            for (i = 0; i < photographers.length; i++) {
-                if (photographers[i].id === lid && element.hasOwnProperty('image') && element.image !== undefined) {
-                    createDomGalerie(element, photographers[i].name)
-                }
+            // Récupérer le photographe correspondant
+            const photographer = photographers.find(p => p.id === element.photographerId);
+            if (!photographer) return;
+
+            // Si c'est une image, on l'affiche normalement
+            if (element.image && element.image !== undefined) {
+                createDomGalerie(element, photographer.name);
+            }
+            // Si c'est une vidéo, on affiche la vidéo mais sans possibilité de lecture
+            else if (element.video && element.video !== undefined) {
+                createDomGalerieVideo(element, photographer.name);
             }
         }
     });
-
 }
+
+
 
 // fonction pour associer le photographe en fonction de l'id dans l'url 
 async function getUrl() {

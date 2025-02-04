@@ -48,6 +48,37 @@ async function createDomGalerie(collection, artiste) {
     sectionGalerie.insertAdjacentHTML('beforeend', photographeGalerie);
 }
 
+// Fonction pour afficher la galerie pour les vidéos
+function createDomGalerieVideo(collection, artiste) {
+  const sectionGalerie = document.querySelector(".galerie");
+
+  const photographeGalerieVideo = `
+    <article class="galerie-article">
+      <video class="video-photo" preload="metadata">
+        <source src="assets/photographes/${artiste}/${collection.video}" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo.
+      </video>
+      <div class="div-description">
+        <p class="galerie-description">${collection.title}</p>
+        <div class="galerie-likes">
+          <span class="galerie-like">${collection.likes}</span>
+          <div class="heart-container"><i class="fa-solid fa-heart"></i></div>
+        </div>
+      </div>
+    </article>
+  `;
+
+  // Insérer l'article dans la galerie
+  sectionGalerie.insertAdjacentHTML('beforeend', photographeGalerieVideo);
+
+  // Récupérer l'élément vidéo qu'on vient d'insérer
+  const videoElement = sectionGalerie.lastElementChild.querySelector('video');
+
+  // Désactiver toute interaction sur la vidéo pour empêcher sa lecture
+  videoElement.style.pointerEvents = 'none';
+}
+
+
 
 
 
