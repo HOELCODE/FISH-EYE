@@ -1,5 +1,5 @@
 // fonction pour récupérer les datas
-async function getPhotographers() {
+const getPhotographers = async () => {
     try {
         const response = await fetch('data/photographers.json');
         if (!response.ok) {
@@ -13,7 +13,7 @@ async function getPhotographers() {
 }
 
 // Fonction pour récupérer le template de display et associer les données récupérées
-async function displayData(photographers) {
+const displayData = async (photographers) => {
     const photographersSection = document.querySelector(".photographer_section");
 
     photographers.forEach((photographer) => {
@@ -25,7 +25,7 @@ async function displayData(photographers) {
 }
 
 //Fonction pour lancer le fetch et display les datas 
-async function init() {
+const init = async () => {
     // Récupère les datas des photographes
     const { photographers } = await getPhotographers();
     displayData(photographers);

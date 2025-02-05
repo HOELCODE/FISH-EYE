@@ -1,8 +1,10 @@
+import { getMedia, getPhotographers } from "../pages/photographer.js";
+
 let carouselData = [];
 let currentIndex = 0;
 
 // Fonction pour récupérer et stocker les médias dans un tableau
-async function getImages() {
+const getImages =  async () => {
     const media = await getMedia();
     const { photographers } = await getPhotographers();
     const params = new URLSearchParams(window.location.search);
@@ -29,7 +31,7 @@ async function getImages() {
 }
 
 // Mettre à jour le carrousel
-function updateCarousel(index) {
+const  updateCarousel = (index) => {
     const mediaContainer = document.querySelector(".img-title-carousel-container");
     mediaContainer.innerHTML = ""; // Vider le conteneur avant d'ajouter un nouvel élément
 
@@ -61,7 +63,7 @@ document.querySelector(".next-btn").addEventListener("click", () => {
 });
 
 //Fonction pour fermer la lightbox
-function closeLightBox() {
+const closeLightBox = () => {
     const bouton = document.querySelector(".carousel")
 
     bouton.addEventListener("click", () => { // Fermer la lightbox
@@ -70,15 +72,8 @@ function closeLightBox() {
 }
 
 // Fonction pour ouvrir la lightbox
-function openLightBox() {
-    const bouton = document.querySelector(".img-title-carousel-container")
-
-    bouton.addEventListener("click", () => { // Ouvrir la lightbox
-        const lightbox = document.querySelector(".carousel");
-        lightbox.style.display = "flex";
-    });
-}
 
 // Charger les images au chargement de la page
 getImages();
 closeLightBox(); 
+

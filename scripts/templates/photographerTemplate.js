@@ -1,5 +1,5 @@
 //fonction pour afficher les éléments dans le dom 
-async function createDomHeader(photographe) {
+export const createDomHeader = async (photographe) => {
     //Récupérer les éléments du DOM
     const headerContainer = document.querySelector(".photograph-header");
 
@@ -26,7 +26,7 @@ async function createDomHeader(photographe) {
 }
 
 // Fonction pour afficher la galerie
-async function createDomGalerie(collection, artiste) {
+export const createDomGalerie = async (collection, artiste) => {
     // Récupérer les éléments du DOM
     const sectionGalerie = document.querySelector(".galerie");
 
@@ -51,7 +51,7 @@ async function createDomGalerie(collection, artiste) {
 }
 
 // Fonction pour afficher la galerie pour les vidéos
-function createDomGalerieVideo(collection, artiste) {
+export const createDomGalerieVideo = (collection, artiste) => {
   const sectionGalerie = document.querySelector(".galerie");
 
   const photographeGalerieVideo = `

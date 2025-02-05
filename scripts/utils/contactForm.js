@@ -1,6 +1,6 @@
 // Ouvrir le modal
 
-function displayModal() {
+export const displayModal = () => {
     const modal = document.getElementById("contact-modal");
     const main = document.querySelector("main");
 	modal.style.display = "block";
@@ -10,7 +10,7 @@ function displayModal() {
 
 // Fermer le modal
 
-function closeModal() {
+export const closeModal = () => {
     const modal = document.getElementById("contact-modal");
     modal.style.display = "none";
     const main = document.querySelector("main");
@@ -18,7 +18,7 @@ function closeModal() {
 }
 
 // Vider le formulaire
-function resetForm() {
+export const resetForm = () => {
     const form = document.getElementById("contact-form");
     const inputs = form.querySelectorAll("input, textarea");
 
@@ -28,7 +28,7 @@ function resetForm() {
 }
 
 // Envoyer le formulaire
-function sendForm(event) {
+export const sendForm = (event) => {
 
         // Récupérer les éléments du formulaire
         const form = document.getElementById("contact-form");

@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 //fonction pour créer le template de la card des photographes
-function photographerTemplate(data) {
+const photographerTemplate = (data) => {
     const { name, portrait, city, country, tagline, price, id } = data;
 
     const picture = `assets/photographes/photos-photographes/${portrait}`;
 
-    function getUserCardDOM() {
+    const getUserCardDOM = () => {
         //Créer les éléments
         const article = document.createElement( 'article' );
 

@@ -1,5 +1,7 @@
+import { createDomHeader, createDomGalerie, createDomGalerieVideo } from '../templates/photographerTemplate.js';
+
 // fonction pour récupérer les datas
-async function getPhotographers() {
+export const getPhotographers = async () => {
     try {
         const response = await fetch('data/photographers.json');
         if (!response.ok) {
@@ -12,7 +14,7 @@ async function getPhotographers() {
 }
 
 // fonction pour récupérer uniquement les medias
-async function getMedia() {
+export const getMedia = async () => {
     try {
         const response = await fetch('data/photographers.json');
         if (!response.ok) {
@@ -26,7 +28,7 @@ async function getMedia() {
 }
 
 //Fonction pour associer la bonne galerie en fonction de l'id du photographe
-async function getGalerie() {
+export const getGalerie = async () => {
     const media = await getMedia();
     const { photographers } = await getPhotographers();
     const params = new URLSearchParams(window.location.search);
@@ -53,7 +55,7 @@ async function getGalerie() {
 
 
 // fonction pour associer le photographe en fonction de l'id dans l'url 
-async function getUrl() {
+export const getUrl = async () => {
     const { photographers } = await getPhotographers();
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
@@ -66,7 +68,7 @@ async function getUrl() {
 }
 
 //fonction pour lancer les différentes fonctions
-async function init() {
+const init = async () => {
     await getUrl();  // Assure que les fonctions asynchrones sont bien exécutées
     await getGalerie();
 }

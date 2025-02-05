@@ -1,5 +1,5 @@
 // Fonction pour compter le nombre de likes présent dans la galerie
-function countLikes() { 
+const countLikes = () => { 
     const likes = document.querySelectorAll(".galerie-like");
     const totalLikes = document.querySelector(".like-total");
 
