@@ -1,88 +1,94 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a6a8d665c2.js" crossorigin="anonymous"></script>
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <a href="index.html"><img src="assets/images/logo.png" class="logo" /></a>
-    </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
-      <div class="section-galerie">
-        <div class="main-content-filter">
-          <h2>Trier par</h2>
-          <div class="filter-section">
-            <div class="dropdown">
-              <button class="btn-drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false"
-                aria-controls="filter options" aria-label="Sort by">
-                <span id="current-filter"></span>
-                <span class="fa-solid fa-chevron-up chevron" aria-hidden="true"></span>
-              </button>
-              <div class="div-bar"></div>
-  
-              <ul class="dropdown-content" aria-hidden="true">
-                <li role="option">
-                  <button type="button" tabindex="-1" aria-label="Sort by title">Titre</button>
-                </li>
-              </ul>
-            </div>
+
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/photographer.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a6a8d665c2.js" crossorigin="anonymous"></script>
+  <title>Fisheye - photographe </title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html"><img src="assets/images/logo.png" class="logo" /></a>
+  </header>
+  <main id="main">
+    <div class="photograph-header">
+      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+    </div>
+    <div class="section-galerie">
+      <div class="main-content-filter">
+        <h2>Trier par</h2>
+        <div class="filter-section">
+          <div class="dropdown">
+            <button class="btn-drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false"
+              aria-controls="filter options" aria-label="Sort by">
+              <span id="current-filter"></span>
+              <span class="fa-solid fa-chevron-up chevron" aria-hidden="true"></span>
+            </button>
+            <div class="div-bar"></div>
+
+            <ul class="dropdown-content" aria-hidden="true">
+              <li role="option">
+                <button type="button" tabindex="-1" aria-label="Sort by title">Titre</button>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="galerie">
-        </div>
       </div>
-    </main>
-    <footer>
-      <div class="like-price-container">
-        <div class="likes"><span class="like-total"></span><i class="fa-solid fa-heart"></i></div>
-        <div class="prices"><span class="price">300</span><p>€/jour</p></div>
+      <div class="galerie">
       </div>
-    </footer>
-    <div id="contact-modal">
-			<div class="modal">
-				<header>
-          <h2></h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div id="contact-form">
-						<label for="prenom">Prénom</label>
-						<input  type="text" id="prenom" name="prenom"/>
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom"/>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email"/>
-            <label for="texte">Votre message</label>
-            <textarea id="texte" name="texte"></textarea>
-					</div>
-          <button class="contact_button" type="submit" onclick="sendForm(event)">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <div id="lightbox">
-      <div class="carousel">
-        <button class="close-btn" aria-label="Close">&times;</button>
-        <div class="carousel-container">
-            <button class="prev-btn" aria-label="Previous">&lt;</button>
-            <img src="assets/photographes/Nabeel Bradford/Travel_Bridge_into_Forest.jpg" alt="Carousel Image" class="carousel-image">
-            <button class="next-btn" aria-label="Next">&gt;</button>
-        </div>
-    </div>      
-
     </div>
-    <script src="/scripts/templates/photographerTemplate.js" defer></script>
-    <script src="/scripts/pages/photographer.js" defer></script>
-    <script src="/scripts/utils/contactForm.js" defer></script>
-    <script src="/scripts/utils/likes.js" defer></script>
-    <script src="/scripts/utils/filter.js" defer></script>
-  </body>
+  </main>
+  <footer>
+    <div class="like-price-container">
+      <div class="likes"><span class="like-total"></span><i class="fa-solid fa-heart"></i></div>
+      <div class="prices"><span class="price">300</span>
+        <p>€/jour</p>
+      </div>
+    </div>
+  </footer>
+  <div id="contact-modal">
+    <div class="modal">
+      <header>
+        <h2></h2>
+        <img src="assets/icons/close.svg" onclick="closeModal()" />
+      </header>
+      <form>
+        <div id="contact-form">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" name="prenom" />
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" />
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" />
+          <label for="texte">Votre message</label>
+          <textarea id="texte" name="texte"></textarea>
+        </div>
+        <button class="contact_button" type="submit" onclick="sendForm(event)">Envoyer</button>
+      </form>
+    </div>
+  </div>
+  <div id="lightbox">
+    <div class="carousel">
+      <button class="close-btn" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="carousel-container">
+        <button class="prev-btn" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="img-title-carousel-container">
+        </div>
+        <button class="next-btn" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+  <script src="/scripts/templates/photographerTemplate.js" defer></script>
+  <script src="/scripts/pages/photographer.js" defer></script>
+  <script src="/scripts/utils/contactForm.js" defer></script>
+  <script src="/scripts/utils/likes.js" defer></script>
+  <script src="/scripts/utils/filter.js" defer></script>
+  <script src="/scripts/utils/lightbox.js" defer></script>
+</body>
+
 </html>

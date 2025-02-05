@@ -11,7 +11,7 @@ function countLikes() {
 }
 
 // Fonction pour ajouter un like sur une image de la galerie
-function addLike() {
+const addLike = () => {
     const boutonLike = document.querySelectorAll(".galerie-likes .fa-solid");
     const likes = document.querySelectorAll(".galerie-like");
 

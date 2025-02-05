@@ -338,11 +338,11 @@ footer {
 .carousel {
     position: relative;
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     margin: auto;
     overflow: hidden;
     background-color: #fff;
-    height: 500px;
+    height: 575px;
     align-items: center;
     display: flex;
 }
@@ -353,9 +353,28 @@ footer {
     justify-content: center;
 }
 
-.carousel-image {
+.img-title-carousel-container {
+    display: flex;
+    flex-direction: column;
     width: 70%;
-    height: auto;
+}
+
+.video-carousel {
+    width: 610px;
+    height: 400px;
+}
+
+.img-carousel {
+    width: 610px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.title-carousel {
+    font-size: 24px;
+    font-weight: 400;
+    color: #901C1C;
+    margin-top: 10px;
 }
 
 .prev-btn,
@@ -363,8 +382,8 @@ footer {
 .close-btn {
     background-color: #fff;
     border: none;
-    color: #901C1C;;
-    font-size: 4rem;
+    color: #901C1C;
+    font-size: 3rem;
     cursor: pointer;
     padding: 10px;
 }
@@ -388,9 +407,9 @@ footer {
 
 .close-btn {
     position: absolute;
-    top: 10px;
+    top: 47px;
     right: 10px;
-    font-size: 4.5rem;
+    font-size: 3rem;
 }
 
 /*/ Lightbox */

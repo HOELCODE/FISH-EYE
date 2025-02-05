@@ -33,7 +33,9 @@ async function createDomGalerie(collection, artiste) {
     // Créer le bloc HTML
     const photographeGalerie = `
         <article class="galerie-article">
+          <ahref="" class="galerie-link">
           <img class="img-photo" src="assets/photographes/${artiste}/${collection.image}" alt="${collection.title}">
+          </a>
           <div class="div-description">
             <p class="galerie-description">${collection.title}</p>
             <div class="galerie-likes">
