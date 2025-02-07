@@ -1,16 +1,3 @@
-//Fonction affichage au chargement
-const affichageChargement = () => {
-    const option = document.getElementById('current-filter');
-    const dropdown = document.querySelector('.dropdown-content');
-    option.innerHTML = 'Popularité';
-    dropdown.style.display = 'none';
-    filterPopularite();
-}
-
-window.onload = function () {
-    affichageChargement();
-};
-
 //Fonction pour cacher ou afficher la liste déroulante
 const dropDown = () => {
     const button = document.querySelector('.btn-drop');
@@ -22,9 +9,7 @@ const dropDown = () => {
             list.style.display = 'flex';
             chevron.classList.remove('fa-chevron-down');
             chevron.classList.add('fa-chevron-up');
-            console.log("rentré dans if");
         } else if (list.style.display === 'flex') {
-            console.log("rentré dans else")
             list.style.display = 'none';
             chevron.classList.remove('fa-chevron-up');
             chevron.classList.add('fa-chevron-down');
@@ -81,6 +66,21 @@ const cacherDropdown = () => {
     chevron.classList.remove('fa-chevron-up');
     chevron.classList.add('fa-chevron-down');
 }
+
+//Fonction affichage au chargement
+const affichageChargement = () => {
+    const option = document.getElementById('current-filter');
+    const dropdown = document.querySelector('.dropdown-content');
+    option.innerHTML = 'Popularité';
+    dropdown.style.display = 'none';
+    filterPopularite();
+    console.log('chargement');
+}
+
+window.onload = function () {
+    affichageChargement();
+};
+
 
 //Fonction pour afficher en fonction de l'élément cliqué dans la liste déroulante
 const filterPar = () => {
