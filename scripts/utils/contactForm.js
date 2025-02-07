@@ -1,21 +1,33 @@
 // Ouvrir le modal
-
 export const displayModal = () => {
     const modal = document.getElementById("contact-modal");
     const main = document.querySelector("main");
-	modal.style.display = "block";
-    modal.style.marginTop = "-118%";
-    main.style.opacity = "0.3";
+    const button = document.querySelector(".contact_button");
+
+    button.addEventListener("click", () => {
+        modal.style.display = "block";
+        modal.style.marginTop = "-118%";
+        main.style.opacity = "0.3";
+        modal.style.display = "block";
+    });
 }
+
+displayModal();
+
 
 // Fermer le modal
-
 export const closeModal = () => {
     const modal = document.getElementById("contact-modal");
-    modal.style.display = "none";
+    const button = document.querySelector(".close-button");
     const main = document.querySelector("main");
-    main.style.opacity = "1";
+
+    button.addEventListener("click", () => {
+        modal.style.display = "none";
+        main.style.opacity = "1";
+    })
 }
+
+closeModal();
 
 // Vider le formulaire
 export const resetForm = () => {
@@ -28,10 +40,14 @@ export const resetForm = () => {
 }
 
 // Envoyer le formulaire
-export const sendForm = (event) => {
+// Envoyer le formulaire
+export const sendForm = () => {
+    const form = document.querySelector("form");
 
-        // Récupérer les éléments du formulaire
-        const form = document.getElementById("contact-form");
+    form.addEventListener("submit", (event) => {
+        event.preventDefault(); // Empêche le rechargement de la page
+
+        // Récupérer les valeurs des champs
         const firstName = form.querySelector("#prenom").value;
         const lastName = form.querySelector("#nom").value;
         const email = form.querySelector("#email").value;
@@ -43,12 +59,19 @@ export const sendForm = (event) => {
         console.log(email);
         console.log(message);
 
-        // Empecher le rechargement de la page
-        event.preventDefault();
-
-        //Vider le formulaire
+        // Réinitialiser le formulaire après l'envoi
         resetForm();
 
         // Fermer le modal
-        closeModal();
-}
+        const modal = document.getElementById("contact-modal");
+        const main = document.querySelector("main");
+
+        modal.style.display = "none";
+        main.style.opacity = "1";
+
+    });
+};
+
+// Exécuter la fonction
+sendForm();
+

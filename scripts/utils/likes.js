@@ -5,30 +5,36 @@ const countLikes = () => {
 
     let total = 0;
     likes.forEach(like => {
-        total += parseInt(like.textContent);
+        total += parseInt(like.textContent) || 0;
     });
     totalLikes.innerHTML = total;
 }
 
-// Fonction pour ajouter un like sur une image de la galerie
-const addLike = () => {
+// Fonction pour ajouter ou retirer un like sur une image de la galerie
+const toggleLike = () => {
     const boutonLike = document.querySelectorAll(".galerie-likes .fa-solid");
     const likes = document.querySelectorAll(".galerie-like");
 
     boutonLike.forEach((like, index) => {
         like.addEventListener("click", () => {
-            let currentLikes = parseInt(likes[index].textContent, 10);
-            // Si currentLikes n'est pas un nombre, on initialise à 0
-            if (isNaN(currentLikes)) {
-                currentLikes = 0;
+            let currentLikes = parseInt(likes[index].textContent, 10) || 0;
+            
+            if (like.classList.contains("liked")) {
+                // Retirer le like
+                likes[index].textContent = Math.max(0, currentLikes - 1);
+                like.classList.remove("liked");
+            } else {
+                // Ajouter le like
+                likes[index].textContent = currentLikes + 1;
+                like.classList.add("liked");
             }
-            likes[index].textContent = currentLikes + 1;
+
             countLikes();
         });
     });
 }
 
-
-// Exécution de la fonction après un délai de 5 secondes
+// Exécution après un délai de 1.5s
 setTimeout(countLikes, 1500);
-setTimeout(addLike, 1500);
+setTimeout(toggleLike, 1500);
+

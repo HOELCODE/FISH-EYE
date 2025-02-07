@@ -38,7 +38,7 @@
     font-weight: 400;
 }
 
-.contact_button {
+.contact_button, .send_button {
     font-size: 20px;
     font-weight: bold;
     color: white;

@@ -1,9 +1,10 @@
 //Fonction affichage au chargement
-function affichageChargement() {
+const affichageChargement = () => {
     const option = document.getElementById('current-filter');
     const dropdown = document.querySelector('.dropdown-content');
     option.innerHTML = 'Popularité';
     dropdown.style.display = 'none';
+    filterPopularite();
 }
 
 window.onload = function () {
@@ -11,7 +12,7 @@ window.onload = function () {
 };
 
 //Fonction pour cacher ou afficher la liste déroulante
-function dropDown() {
+const dropDown = () => {
     const button = document.querySelector('.btn-drop');
     const list = document.querySelector('.dropdown-content');
     const chevron = document.querySelector('.chevron');
@@ -34,7 +35,7 @@ function dropDown() {
 dropDown();
 
 //fonction pour filter par popularitérité
-function filterPopularite() {
+const filterPopularite = () => {
     const galerie = document.querySelector(".galerie");
     if (!galerie) return;
 
@@ -53,7 +54,7 @@ function filterPopularite() {
 }
 
 //fonction pour filter par Titre
-function filterTitre() {
+const filterTitre = () => {
     const galerie = document.querySelector(".galerie");
     if (!galerie) return;
 
@@ -72,7 +73,7 @@ function filterTitre() {
 }
 
 //fonction pour fermer la liste déroulante après un click
-function cacherDropdown() {
+const cacherDropdown = () => {
     const list = document.querySelector('.dropdown-content');
     const chevron = document.querySelector('.chevron');
     
@@ -82,7 +83,7 @@ function cacherDropdown() {
 }
 
 //Fonction pour afficher en fonction de l'élément cliqué dans la liste déroulante
-function filterPar() {
+const filterPar = () => {
     const bouton = document.querySelector("#current-filter");
     const filtre = document.querySelector(".dropdown-content button");
 

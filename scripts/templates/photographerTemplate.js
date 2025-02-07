@@ -1,29 +1,37 @@
 //fonction pour afficher les éléments dans le dom 
 export const createDomHeader = async (photographe) => {
-    //Récupérer les éléments du DOM
-    const headerContainer = document.querySelector(".photograph-header");
+  // Récupérer l'élément contenant le header
+  const headerContainer = document.querySelector(".photograph-header");
+  const contactButton = headerContainer.querySelector(".contact_button");
 
-    //Créer le bloque html 
-    const photographerHeader = `
-        <div class="photograph-description">
-            <h1 class="photograph-name">${photographe.name}</h1>
-            <p class="photograph-localisation">${photographe.city}, ${photographe.country}</p>
-            <span class="photograph-slogan">${photographe.tagline}</span>
-        </div>
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-        <img class="image-photographe" src="assets/photographes/photos-photographes/${photographe.portrait}" alt="photo de ${photographe.name}">
-    `
+  // Créer dynamiquement la div `.photograph-description`
+  const descriptionDiv = document.createElement("div");
+  descriptionDiv.classList.add("photograph-description");
+  descriptionDiv.innerHTML = `
+      <h1 class="photograph-name">${photographe.name}</h1>
+      <p class="photograph-localisation">${photographe.city}, ${photographe.country}</p>
+      <span class="photograph-slogan">${photographe.tagline}</span>
+  `;
 
-    //Ajouter le prénom dans h2 du formulaire
-    const form = document.getElementById("contact-modal");
-    form.querySelector("h2").innerHTML = `Contactez-moi<br>${photographe.name}`; 
+  // Créer dynamiquement l'image
+  const imgElement = document.createElement("img");
+  imgElement.classList.add("image-photographe");
+  imgElement.src = `assets/photographes/photos-photographes/${photographe.portrait}`;
+  imgElement.alt = `photo de ${photographe.name}`;
 
-    
-    //Associer le header
-    headerContainer.innerHTML = photographerHeader;
+  // Ajouter la div avant le bouton
+  headerContainer.insertBefore(descriptionDiv, contactButton);
 
-    return (headerContainer);
-}
+  // Ajouter l'image après le bouton
+  contactButton.insertAdjacentElement("afterend", imgElement);
+
+  // Ajouter le prénom dans le formulaire
+  const form = document.getElementById("contact-modal");
+  form.querySelector("h2").innerHTML = `Contactez-moi<br>${photographe.name}`; 
+
+  return headerContainer;
+};
+
 
 // Fonction pour afficher la galerie
 export const createDomGalerie = async (collection, artiste) => {
