@@ -17,8 +17,6 @@ const dropDown = () => {
     });
 }
 
-dropDown();
-
 //fonction pour filter par popularitérité
 const filterPopularite = () => {
     const galerie = document.querySelector(".galerie");
@@ -36,6 +34,7 @@ const filterPopularite = () => {
 
     // Réorganise les articles dans la div en les réinsérant dans le nouvel ordre
     articles.forEach(article => galerie.appendChild(article));
+
 }
 
 //fonction pour filter par Titre
@@ -74,13 +73,7 @@ const affichageChargement = () => {
     option.innerHTML = 'Popularité';
     dropdown.style.display = 'none';
     filterPopularite();
-    console.log('chargement');
 }
-
-window.onload = function () {
-    affichageChargement();
-};
-
 
 //Fonction pour afficher en fonction de l'élément cliqué dans la liste déroulante
 const filterPar = () => {
@@ -104,4 +97,7 @@ const filterPar = () => {
     });
 }
 
+//Lancement des fonctions
+dropDown();
+document.addEventListener("galleryLoaded", affichageChargement);
 filterPar();

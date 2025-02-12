@@ -1,4 +1,4 @@
-// Fonction pour compter le nombre de likes présent dans la galerie
+// Fonction pour compter le nombre de likes présent dans la galerie et l'ajouter dans le bloque en bas de la page
 const countLikes = () => { 
     const likes = document.querySelectorAll(".galerie-like");
     const totalLikes = document.querySelector(".like-total");
@@ -34,7 +34,9 @@ const toggleLike = () => {
     });
 }
 
-// Exécution après un délai de 1.5s
-setTimeout(countLikes, 1500);
-setTimeout(toggleLike, 1500);
+// Lancer les fonctions
+document.addEventListener("galleryLoaded", () => {
+    countLikes();
+    toggleLike();
+});
 

@@ -1,4 +1,4 @@
-//fonction pour afficher les éléments dans le dom 
+//fonction pour afficher le header photographe, le prenom dans le formulaire et le prix du photographe
 export const createDomHeader = async (photographe) => {
   // Récupérer l'élément contenant le header
   const headerContainer = document.querySelector(".photograph-header");
@@ -27,7 +27,12 @@ export const createDomHeader = async (photographe) => {
 
   // Ajouter le prénom dans le formulaire
   const form = document.getElementById("contact-modal");
-  form.querySelector("h2").innerHTML = `Contactez-moi<br>${photographe.name}`; 
+  form.querySelector("h2").innerHTML = `Contactez-moi<br>${photographe.name}`;
+
+  // Ajouter le prix du photographe 
+  const priceDiv = document.querySelector(".price");
+  priceDiv.innerHTML = photographe.price;
+
 
   return headerContainer;
 };
@@ -35,15 +40,15 @@ export const createDomHeader = async (photographe) => {
 
 // Fonction pour afficher la galerie
 export const createDomGalerie = async (collection, artiste) => {
-    // Récupérer les éléments du DOM
-    const sectionGalerie = document.querySelector(".galerie");
+  // Récupérer les éléments du DOM
+  const sectionGalerie = document.querySelector(".galerie");
 
-    // Créer le bloc HTML
-    const photographeGalerie = `
+  // Créer le bloc HTML
+  const photographeGalerie = `
         <article class="galerie-article">
-          <ahref="" class="galerie-link">
+          <div class="galerie-link">
           <img class="img-photo" src="assets/photographes/${artiste}/${collection.image}" alt="${collection.title}">
-          </a>
+          </div>
           <div class="div-description">
             <p class="galerie-description">${collection.title}</p>
             <div class="galerie-likes">
@@ -54,8 +59,8 @@ export const createDomGalerie = async (collection, artiste) => {
         </article>
     `;
 
-    // Ajouter l'article à la galerie sans remplacer le contenu existant
-    sectionGalerie.insertAdjacentHTML('beforeend', photographeGalerie);
+  // Ajouter l'article à la galerie sans remplacer le contenu existant
+  sectionGalerie.insertAdjacentHTML('beforeend', photographeGalerie);
 }
 
 // Fonction pour afficher la galerie pour les vidéos
@@ -64,10 +69,11 @@ export const createDomGalerieVideo = (collection, artiste) => {
 
   const photographeGalerieVideo = `
     <article class="galerie-article">
-      <video class="video-photo" preload="metadata">
-        <source src="assets/photographes/${artiste}/${collection.video}" type="video/mp4">
-        Votre navigateur ne supporte pas la vidéo.
-      </video>
+      <div class="galerie-link">
+        <video class="img-photo" preload="metadata">
+          <source src="assets/photographes/${artiste}/${collection.video}" type="video/mp4">
+        </video>
+      </div>
       <div class="div-description">
         <p class="galerie-description">${collection.title}</p>
         <div class="galerie-likes">

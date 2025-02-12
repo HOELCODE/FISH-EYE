@@ -69,8 +69,11 @@ export const getUrl = async () => {
 
 //fonction pour lancer les différentes fonctions
 const init = async () => {
-    await getUrl();  // Assure que les fonctions asynchrones sont bien exécutées
+    await getUrl(); 
     await getGalerie();
+
+    // Ajoute un evenement quand la galerie est chargée
+    document.dispatchEvent(new Event("galleryLoaded"));
 }
 
 init();

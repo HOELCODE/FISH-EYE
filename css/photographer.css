@@ -164,18 +164,18 @@ article {
     margin-bottom: 20px;
 }
 
-.img-photo {
+.galerie-link {
+    text-decoration: none;
+    cursor: pointer;
     height: 300px;
     width: 350px;
-    object-fit: cover;
-    border-radius: 10px;
 }
 
-.video-photo {
+.img-photo {
     height: 300px;
-    width: 350px;
-    border-radius: 10px;
+    width: 100%;
     object-fit: cover;
+    border-radius: 10px;
 }
 
 .div-description {
@@ -344,7 +344,14 @@ footer {
     background-color: #fff;
     height: 575px;
     align-items: center;
+}
+
+.carousel-open {
     display: flex;
+}
+
+.carousel-close {
+    display: none;
 }
 
 .carousel-container {

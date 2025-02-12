@@ -12,9 +12,6 @@ export const displayModal = () => {
     });
 }
 
-displayModal();
-
-
 // Fermer le modal
 export const closeModal = () => {
     const modal = document.getElementById("contact-modal");
@@ -26,8 +23,6 @@ export const closeModal = () => {
         main.style.opacity = "1";
     })
 }
-
-closeModal();
 
 // Vider le formulaire
 export const resetForm = () => {
@@ -72,6 +67,8 @@ export const sendForm = () => {
     });
 };
 
-// Exécuter la fonction
+// Exécuter les fonction
+displayModal();
+closeModal();
 sendForm();
 

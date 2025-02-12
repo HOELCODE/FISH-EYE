@@ -4,7 +4,7 @@ let carouselData = [];
 let currentIndex = 0;
 
 // Fonction pour récupérer et stocker les médias dans un tableau
-const getImages =  async () => {
+const getImages = async () => {
     const media = await getMedia();
     const { photographers } = await getPhotographers();
     const params = new URLSearchParams(window.location.search);
@@ -31,7 +31,7 @@ const getImages =  async () => {
 }
 
 // Mettre à jour le carrousel
-const  updateCarousel = (index) => {
+const updateCarousel = (index) => {
     const mediaContainer = document.querySelector(".img-title-carousel-container");
     mediaContainer.innerHTML = ""; // Vider le conteneur avant d'ajouter un nouvel élément
 
@@ -64,16 +64,32 @@ document.querySelector(".next-btn").addEventListener("click", () => {
 
 //Fonction pour fermer la lightbox
 const closeLightBox = () => {
-    const bouton = document.querySelector(".carousel")
+    const bouton = document.querySelector(".close-btn");
+    const lightbox = document.querySelector(".carousel");
 
-    bouton.addEventListener("click", () => { // Fermer la lightbox
-            bouton.style.display = "none";
+    bouton.addEventListener("click", () => { 
+        lightbox.classList.remove("carousel-open");
+        lightbox.classList.add("carousel-close");
     });
 }
 
 // Fonction pour ouvrir la lightbox
+const openLightBox = () => {
+    const carousel = document.querySelector(".carousel");
+    const articleImages = document.querySelectorAll(".galerie-link");
 
-// Charger les images au chargement de la page
+    articleImages.forEach((element) => {
+        element.addEventListener('click', () => {
+            carousel.classList.remove("carousel-close");
+            carousel.classList.add("carousel-open");
+        });
+    });
+};
+
+// Lancer les fonctions
+document.addEventListener("galleryLoaded", () => {
+    openLightBox();
+});
 getImages();
-closeLightBox(); 
+closeLightBox();
 
