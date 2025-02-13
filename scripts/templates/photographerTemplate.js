@@ -70,8 +70,8 @@ export const createDomGalerieVideo = (collection, artiste) => {
   const photographeGalerieVideo = `
     <article class="galerie-article">
       <div class="galerie-link">
-        <video class="img-photo" preload="metadata">
-          <source src="assets/photographes/${artiste}/${collection.video}" type="video/mp4">
+        <video class="img-photo" preload="metadata" data-title="${collection.title}">
+          <source src="assets/photographes/${artiste}/${collection.video}" "type="video/mp4">
         </video>
       </div>
       <div class="div-description">

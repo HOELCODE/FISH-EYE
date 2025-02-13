@@ -23,12 +23,7 @@ const getImages = async () => {
             };
         })
         .filter(item => item !== null); // Supprimer les entrées nulles
-
-    // Afficher le premier élément
-    if (carouselData.length > 0) {
-        updateCarousel(0);
-    }
-}
+};
 
 // Mettre à jour le carrousel
 const updateCarousel = (index) => {
@@ -38,16 +33,17 @@ const updateCarousel = (index) => {
     if (carouselData.length === 0) return;
 
     const item = carouselData[index];
+    currentIndex = index;
 
     let mediaElement = item.type === "image"
         ? `<img class="img-carousel" src="${item.src}" alt="${item.title}">`
-        : `<video class="video-carousel" controls="false" autoplay="autoplay"><source src="${item.src}" type="video/mp4"></video>`;
+        : `<video class="video-carousel" controls autoplay><source src="${item.src}" type="video/mp4"></video>`;
 
     mediaContainer.innerHTML = `
         ${mediaElement}
         <span class="title-carousel">${item.title}</span>
     `;
-}
+};
 
 // Gestion des boutons de navigation
 document.querySelector(".prev-btn").addEventListener("click", () => {
@@ -66,30 +62,51 @@ document.querySelector(".next-btn").addEventListener("click", () => {
 const closeLightBox = () => {
     const bouton = document.querySelector(".close-btn");
     const lightbox = document.querySelector(".carousel");
+    const lightBox = document.querySelector("#lightbox");
 
     bouton.addEventListener("click", () => { 
+        lightBox.classList.remove("lightbox-open");
         lightbox.classList.remove("carousel-open");
         lightbox.classList.add("carousel-close");
     });
 }
 
-// Fonction pour ouvrir la lightbox
-const openLightBox = () => {
+// Fonction pour ouvrir la lightbox avec l'image cliquée
+const openLightBox = (index) => {
     const carousel = document.querySelector(".carousel");
-    const articleImages = document.querySelectorAll(".galerie-link");
+    const lightBox = document.querySelector("#lightbox");
+    
+    lightBox.classList.add("lightbox-open");
+    carousel.classList.remove("carousel-close");
+    carousel.classList.add("carousel-open");
+    updateCarousel(index);
+};
 
-    articleImages.forEach((element) => {
-        element.addEventListener('click', () => {
-            carousel.classList.remove("carousel-close");
-            carousel.classList.add("carousel-open");
+
+// Ajouter l'écouteur d'événements aux images de la galerie
+const setupImageClickEvents = () => {
+    const articleItems = document.querySelectorAll(".galerie-link");
+
+    articleItems.forEach((element) => {
+        element.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            // Vérifier si c'est une image ou une vidéo
+            const mediaElement = element.querySelector("img, video");
+            const titre = mediaElement.tagName === "IMG" ? mediaElement.alt : mediaElement.getAttribute("data-title");
+
+            // Trouver l'index correspondant dans le tableau
+            const index = carouselData.findIndex(item => item.title === titre);
+            if (index !== -1) {
+                openLightBox(index);
+            }
         });
     });
 };
 
 // Lancer les fonctions
 document.addEventListener("galleryLoaded", () => {
-    openLightBox();
+    getImages().then(setupImageClickEvents);
 });
-getImages();
 closeLightBox();
 
