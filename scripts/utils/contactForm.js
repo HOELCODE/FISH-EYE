@@ -5,10 +5,9 @@ export const displayModal = () => {
     const button = document.querySelector(".contact_button");
 
     button.addEventListener("click", () => {
-        modal.style.display = "block";
-        modal.style.marginTop = "-118%";
+        modal.classList.remove("modal-close");
+        modal.classList.add("modal-open");
         main.style.opacity = "0.3";
-        modal.style.display = "block";
     });
 }
 
@@ -19,7 +18,8 @@ export const closeModal = () => {
     const main = document.querySelector("main");
 
     button.addEventListener("click", () => {
-        modal.style.display = "none";
+        modal.classList.remove("modal-open");
+        modal.classList.add("modal-close");
         main.style.opacity = "1";
     })
 }
