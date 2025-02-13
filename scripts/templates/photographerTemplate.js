@@ -7,17 +7,21 @@ export const createDomHeader = async (photographe) => {
   // Créer dynamiquement la div `.photograph-description`
   const descriptionDiv = document.createElement("div");
   descriptionDiv.classList.add("photograph-description");
+  descriptionDiv.setAttribute("aria-label", `Description du photographe ${photographe.name}`);
+
+  // Ajouter dynamiquement le contenu de la description
   descriptionDiv.innerHTML = `
-      <h1 class="photograph-name">${photographe.name}</h1>
-      <p class="photograph-localisation">${photographe.city}, ${photographe.country}</p>
-      <span class="photograph-slogan">${photographe.tagline}</span>
+      <h1 class="photograph-name" aria-label="Nom du photographe">${photographe.name}</h1>
+      <p class="photograph-localisation" aria-label="Localisation">${photographe.city}, ${photographe.country}</p>
+      <span class="photograph-slogan" aria-label="Slogan">${photographe.tagline}</span>
   `;
 
   // Créer dynamiquement l'image
   const imgElement = document.createElement("img");
   imgElement.classList.add("image-photographe");
   imgElement.src = `assets/photographes/photos-photographes/${photographe.portrait}`;
-  imgElement.alt = `photo de ${photographe.name}`;
+  imgElement.alt = `Portrait du photographe ${photographe.name}`;
+  imgElement.setAttribute("aria-label", `Portrait du photographe ${photographe.name}`);
 
   // Ajouter la div avant le bouton
   headerContainer.insertBefore(descriptionDiv, contactButton);
@@ -25,17 +29,19 @@ export const createDomHeader = async (photographe) => {
   // Ajouter l'image après le bouton
   contactButton.insertAdjacentElement("afterend", imgElement);
 
-  // Ajouter le prénom dans le formulaire
+  // Ajouter le prénom dans le formulaire avec une meilleure accessibilité
   const form = document.getElementById("contact-modal");
   form.querySelector("h2").innerHTML = `Contactez-moi<br>${photographe.name}`;
+  form.setAttribute("aria-label", `Formulaire de contact pour ${photographe.name}`);
 
-  // Ajouter le prix du photographe 
+  // Ajouter le prix du photographe avec un aria-label
   const priceDiv = document.querySelector(".price");
   priceDiv.innerHTML = photographe.price;
-
+  priceDiv.setAttribute("aria-label", `Tarif journalier du photographe : ${photographe.price} euros par jour`);
 
   return headerContainer;
 };
+
 
 
 // Fonction pour afficher la galerie
@@ -45,18 +51,20 @@ export const createDomGalerie = async (collection, artiste) => {
 
   // Créer le bloc HTML
   const photographeGalerie = `
-        <article class="galerie-article">
-          <div class="galerie-link">
-          <img class="img-photo" src="assets/photographes/${artiste}/${collection.image}" alt="${collection.title}">
-          </div>
-          <div class="div-description">
-            <p class="galerie-description">${collection.title}</p>
-            <div class="galerie-likes">
-              <span class="galerie-like">${collection.likes}</span>
-              <div class="heart-container"><i class="fa-solid fa-heart"></i></div>
-            </div>
-          </div>
-        </article>
+<article class="galerie-article" aria-label="Article de galerie présentant une image ou une vidéo">
+  <div class="galerie-link" aria-label="Cliquez pour voir l'image ou la vidéo">
+    <img class="img-photo" src="assets/photographes/${artiste}/${collection.image}" alt="${collection.title}" aria-label="Image de ${collection.title}">
+  </div>
+  <div class="div-description" aria-label="Description de l'œuvre">
+    <p class="galerie-description" aria-label="Titre de l'œuvre">${collection.title}</p>
+    <div class="galerie-likes" aria-label="Nombre de likes">
+      <span class="galerie-like" aria-label="Nombre de likes">${collection.likes}</span>
+      <div class="heart-container" aria-hidden="true">
+        <i class="fa-solid fa-heart" aria-label="Icône de cœur pour les likes"></i>
+      </div>
+    </div>
+  </div>
+</article>
     `;
 
   // Ajouter l'article à la galerie sans remplacer le contenu existant

@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />    
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye</title>
+    <title>Fisheye - Nos photographes</title>
   </head>
   <body>
     <header>
-        <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="fisheye logo"/></a>
-        <h1>Nos photographes</h1>
+        <a href="index.html" aria-label="Retour à l'accueil">
+          <img src="assets/images/logo.png" class="logo" alt="Logo de Fisheye" />
+        </a>
+        <h1 id="page-title">Nos photographes</h1>
     </header>
-    <main id="main">
-        <div class="photographer_section"></div>
+    <main id="main" aria-labelledby="page-title">
+        <div class="photographer_section" role="region" aria-label="Liste des photographes"></div>
     </main>
     <script src="scripts/templates/homePageTemplate.js" type="module"></script>
     <script src="scripts/pages/homePage.js" type="module"></script>

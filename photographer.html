@@ -1,94 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <link href="css/photographer.css" rel="stylesheet" type="text/css" />
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a6a8d665c2.js" crossorigin="anonymous"></script>
-  <title>Fisheye - photographe </title>
+  <title>Fisheye - Photographe</title>
 </head>
 
 <body>
   <header>
-    <a href="index.html"><img src="assets/images/logo.png" class="logo" /></a>
+    <a href="index.html" aria-label="Retour à l'accueil">
+      <img src="assets/images/logo.png" class="logo" alt="Logo de Fisheye" />
+    </a>
   </header>
-  <main id="main">
+  
+  <main id="main" aria-labelledby="page-title">
     <div class="photograph-header">
-      <button class="contact_button">Contactez-moi</button>
+      <button class="contact_button" aria-haspopup="dialog" aria-controls="contact-modal">Contactez-moi</button>
     </div>
+
     <div class="section-galerie">
       <div class="main-content-filter">
-        <h2>Trier par</h2>
+        <h2 id="sort-title">Trier par</h2>
         <div class="filter-section">
           <div class="dropdown">
-            <button class="btn-drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false"
-              aria-controls="filter options" aria-label="Sort by">
+            <button class="btn-drop" type="button" aria-haspopup="listbox" aria-expanded="false"
+              aria-controls="filter-options" aria-labelledby="sort-title">
               <span id="current-filter"></span>
               <span class="fa-solid fa-chevron-up chevron" aria-hidden="true"></span>
             </button>
             <div class="div-bar"></div>
 
-            <ul class="dropdown-content" aria-hidden="true">
+            <ul id="filter-options" class="dropdown-content" role="listbox" aria-hidden="true">
               <li role="option">
-                <button type="button" tabindex="-1" aria-label="Sort by title">Titre</button>
+                <button type="button" tabindex="-1" aria-label="Trier par titre">Titre</button>
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="galerie">
-      </div>
+
+      <div class="galerie" role="region" aria-label="Galerie de photos"></div>
     </div>
   </main>
+
   <footer>
     <div class="like-price-container">
-      <div class="likes"><span class="like-total"></span><i class="fa-solid fa-heart"></i></div>
-      <div class="prices"><span class="price"></span>
+      <div class="likes">
+        <span class="like-total"></span>
+        <i class="fa-solid fa-heart" aria-hidden="true"></i>
+      </div>
+      <div class="prices">
+        <span class="price"></span>
         <p>€/jour</p>
       </div>
     </div>
   </footer>
-  <div id="contact-modal" class="modal-close">
+
+  <div id="contact-modal" class="modal-close" role="dialog" aria-labelledby="contact-title" aria-hidden="true">
     <div class="modal">
       <header>
         <h2></h2>
-        <img src="assets/icons/close.svg" class="close-button" />
+        <img src="assets/icons/close.svg" class="close-button" alt="Fermer la fenêtre de contact" />
       </header>
       <form>
         <div id="contact-form">
           <label for="prenom">Prénom</label>
-          <input type="text" id="prenom" name="prenom" required />
+          <input type="text" id="prenom" name="prenom" required aria-required="true" />
+
           <label for="nom">Nom</label>
-          <input type="text" id="nom" name="nom" required />
+          <input type="text" id="nom" name="nom" required aria-required="true" />
+
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required/>
+          <input type="email" id="email" name="email" required aria-required="true" />
+
           <label for="texte">Votre message</label>
-          <textarea id="texte" name="texte" required></textarea>
+          <textarea id="texte" name="texte" required aria-required="true"></textarea>
         </div>
         <button class="send_button" type="submit">Envoyer</button>
       </form>
     </div>
   </div>
-  <div id="lightbox">
+
+  <div id="lightbox" role="dialog" aria-labelledby="lightbox-title" aria-hidden="true">
     <div class="carousel carousel-close">
-      <button class="close-btn" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <button class="close-btn" aria-label="Fermer la lightbox">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
       <div class="carousel-container">
-        <button class="prev-btn" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
-        <div class="img-title-carousel-container">
-        </div>
-        <button class="next-btn" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+        <button class="prev-btn" aria-label="Image précédente">
+          <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <div class="img-title-carousel-container"></div>
+        <button class="next-btn" aria-label="Image suivante">
+          <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
   </div>
+
   <script src="/scripts/templates/photographerTemplate.js" type="module" defer></script>
   <script src="/scripts/pages/photographer.js" type="module" defer></script>
   <script src="/scripts/utils/contactForm.js" type="module" defer></script>
   <script src="/scripts/utils/likes.js" type="module" defer></script>
   <script src="/scripts/utils/filter.js" type="module" defer></script>
-  <script src="/scripts/utils/lightbox.js"  type="module" defer></script>
+  <script src="/scripts/utils/lightbox.js" type="module" defer></script>
 </body>
 
 </html>

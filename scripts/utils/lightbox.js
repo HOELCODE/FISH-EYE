@@ -58,28 +58,52 @@ document.querySelector(".next-btn").addEventListener("click", () => {
     updateCarousel(currentIndex);
 });
 
-//Fonction pour fermer la lightbox
+// Écoute des touches du clavier pour la navigation et fermeture
+const keyboardNavigation = (event) => {
+    if (carouselData.length === 0) return;
+
+    switch (event.key) {
+        case "ArrowLeft":
+            currentIndex = (currentIndex - 1 + carouselData.length) % carouselData.length;
+            updateCarousel(currentIndex);
+            break;
+
+        case "ArrowRight":
+            currentIndex = (currentIndex + 1) % carouselData.length;
+            updateCarousel(currentIndex);
+            break;
+
+        case "Escape":
+            closeLightBox();
+            break;
+    }
+};
+
+// Fonction pour fermer la lightbox et désactiver le clavier
 const closeLightBox = () => {
-    const bouton = document.querySelector(".close-btn");
-    const lightbox = document.querySelector(".carousel");
     const lightBox = document.querySelector("#lightbox");
+    const carousel = document.querySelector(".carousel");
 
-    bouton.addEventListener("click", () => { 
-        lightBox.classList.remove("lightbox-open");
-        lightbox.classList.remove("carousel-open");
-        lightbox.classList.add("carousel-close");
-    });
-}
+    lightBox.classList.remove("lightbox-open");
+    carousel.classList.remove("carousel-open");
+    carousel.classList.add("carousel-close");
 
-// Fonction pour ouvrir la lightbox avec l'image cliquée
+    // Retirer l'écouteur clavier pour éviter les conflits
+    document.removeEventListener("keydown", keyboardNavigation);
+};
+
+// Fonction pour ouvrir la lightbox avec l'image cliquée et activer le clavier
 const openLightBox = (index) => {
     const carousel = document.querySelector(".carousel");
     const lightBox = document.querySelector("#lightbox");
-    
+
     lightBox.classList.add("lightbox-open");
     carousel.classList.remove("carousel-close");
     carousel.classList.add("carousel-open");
     updateCarousel(index);
+
+    // Ajouter l'écouteur clavier quand la lightbox est ouverte
+    document.addEventListener("keydown", keyboardNavigation);
 };
 
 
@@ -108,5 +132,5 @@ const setupImageClickEvents = () => {
 document.addEventListener("galleryLoaded", () => {
     getImages().then(setupImageClickEvents);
 });
-closeLightBox();
+document.querySelector(".close-btn").addEventListener("click", closeLightBox);
 
