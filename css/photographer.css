@@ -158,14 +158,16 @@
 
 article {
     margin-bottom: 20px;
-}
+}                   
 
 .galerie-link {
     text-decoration: none;
     cursor: pointer;
     height: 300px;
     width: 350px;
-}
+    background-color: #fff;
+    border: 0px;
+}           
 
 .img-photo {
     height: 300px;

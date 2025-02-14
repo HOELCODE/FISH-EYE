@@ -52,9 +52,9 @@ export const createDomGalerie = async (collection, artiste) => {
   // Créer le bloc HTML
   const photographeGalerie = `
 <article class="galerie-article" aria-label="Article de galerie présentant une image ou une vidéo">
-  <div class="galerie-link" aria-label="Cliquez pour voir l'image ou la vidéo" tabindex="0">
+  <button class="galerie-link" aria-label="Cliquez pour voir l'image ou la vidéo">
     <img class="img-photo" src="assets/photographes/${artiste}/${collection.image}" alt="${collection.title}" aria-label="Image de ${collection.title}">
-  </div>
+  </button>
   <div class="div-description" aria-label="Description de l'œuvre">
     <p class="galerie-description" aria-label="Titre de l'œuvre">${collection.title}</p>
     <div class="galerie-likes" aria-label="Nombre de likes">
