@@ -1,4 +1,4 @@
-import { createDomHeader, createDomGalerie, createDomGalerieVideo } from '../templates/photographerTemplate.js';
+import { createDomHeader, createDomGalerie } from '../templates/photographerTemplate.js';
 
 // fonction pour récupérer les datas
 export const getPhotographers = async () => {
@@ -27,30 +27,25 @@ export const getMedia = async () => {
     }
 }
 
-//Fonction pour associer la bonne galerie en fonction de l'id du photographe
+// Fonction pour associer la bonne galerie en fonction de l'id du photographe
 export const getGalerie = async () => {
     const media = await getMedia();
     const { photographers } = await getPhotographers();
     const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
+    const id = parseInt(params.get('id')); // Convertir en entier
 
     media.forEach(element => {
-        if (element.photographerId === parseInt(id)) {
+        if (element.photographerId === id) {
             // Récupérer le photographe correspondant
-            const photographer = photographers.find(p => p.id === element.photographerId);
+            const photographer = photographers.find(p => p.id === id);
             if (!photographer) return;
 
-            // Si c'est une image, on l'affiche normalement
-            if (element.image && element.image !== undefined) {
-                createDomGalerie(element, photographer.name);
-            }
-            // Si c'est une vidéo, on affiche la vidéo mais sans possibilité de lecture
-            else if (element.video && element.video !== undefined) {
-                createDomGalerieVideo(element, photographer.name);
-            }
+            // Utilisation de la factory pour générer le bon type de média
+            createDomGalerie(element, photographer.name);
         }
     });
-}
+};
+
 
 
 

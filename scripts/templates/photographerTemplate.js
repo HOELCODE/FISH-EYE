@@ -44,63 +44,70 @@ export const createDomHeader = async (photographe) => {
 
 
 
-// Fonction pour afficher la galerie
-export const createDomGalerie = async (collection, artiste) => {
-  // Récupérer les éléments du DOM
-  const sectionGalerie = document.querySelector(".galerie");
+// Factory pour créer une image ou une vidéo
+class MediaFactory {
+  constructor(collection, artiste) {
+    this.collection = collection;
+    this.artiste = artiste;
+  }
 
-  // Créer le bloc HTML
-  const photographeGalerie = `
-<article class="galerie-article" aria-label="Article de galerie présentant une image ou une vidéo">
-  <button class="galerie-link" aria-label="Cliquez pour voir l'image ou la vidéo">
-    <img class="img-photo" src="assets/photographes/${artiste}/${collection.image}" alt="${collection.title}" aria-label="Image de ${collection.title}">
-  </button>
-  <div class="div-description" aria-label="Description de l'œuvre">
-    <p class="galerie-description" aria-label="Titre de l'œuvre">${collection.title}</p>
-    <div class="galerie-likes" aria-label="Nombre de likes">
-      <span class="galerie-like" aria-label="Nombre de likes">${collection.likes}</span>
-      <div class="heart-container" aria-hidden="true">
-        <i class="fa-solid fa-heart" aria-label="Icône de cœur pour les likes"></i>
-      </div>
-    </div>
-  </div>
-</article>
+  createMediaElement() {
+    if (this.collection.image) {
+      return this.createImage();
+    } else if (this.collection.video) {
+      return this.createVideo();
+    } else {
+      throw new Error("Format de média non pris en charge");
+    }
+  }
+
+  createImage() {
+    return `
+      <button class="galerie-link" aria-label="Cliquez pour voir l'image">
+        <img class="img-photo" src="assets/photographes/${this.artiste}/${this.collection.image}" 
+          alt="${this.collection.title}" aria-label="Image de ${this.collection.title}">
+      </button>
     `;
+  }
 
-  // Ajouter l'article à la galerie sans remplacer le contenu existant
-  sectionGalerie.insertAdjacentHTML('beforeend', photographeGalerie);
+  createVideo() {
+    return `
+      <button class="galerie-link" aria-label="Cliquez pour voir la video">
+        <video class="img-photo" preload="metadata" data-title="${this.collection.title}" style="pointer-events: none;">
+          <source src="assets/photographes/${this.artiste}/${this.collection.video}" type="video/mp4">
+        </video>
+      </button    >
+    `;
+  }
 }
 
-// Fonction pour afficher la galerie pour les vidéos
-export const createDomGalerieVideo = (collection, artiste) => {
+// Fonction pour afficher la galerie
+export const createDomGalerie = (collection, artiste) => {
   const sectionGalerie = document.querySelector(".galerie");
 
-  const photographeGalerieVideo = `
-    <article class="galerie-article">
-      <div class="galerie-link">
-        <video class="img-photo" preload="metadata" data-title="${collection.title}">
-          <source src="assets/photographes/${artiste}/${collection.video}" "type="video/mp4">
-        </video>
-      </div>
-      <div class="div-description">
-        <p class="galerie-description">${collection.title}</p>
-        <div class="galerie-likes">
-          <span class="galerie-like">${collection.likes}</span>
-          <div class="heart-container"><i class="fa-solid fa-heart"></i></div>
+  // Utilisation de la Factory pour créer le bon type de média
+  const mediaFactory = new MediaFactory(collection, artiste);
+  const mediaElement = mediaFactory.createMediaElement();
+
+  const photographeGalerie = `
+    <article class="galerie-article" aria-label="Article de galerie présentant une image ou une vidéo">
+      ${mediaElement}
+      <div class="div-description" aria-label="Description de l'œuvre">
+        <p class="galerie-description" aria-label="Titre de l'œuvre">${collection.title}</p>
+        <div class="galerie-likes" aria-label="Nombre de likes">
+          <span class="galerie-like" aria-label="Nombre de likes">${collection.likes}</span>
+          <div class="heart-container" aria-hidden="true">
+            <i class="fa-solid fa-heart" aria-label="Icône de cœur pour les likes"></i>
+          </div>
         </div>
       </div>
     </article>
   `;
 
-  // Insérer l'article dans la galerie
-  sectionGalerie.insertAdjacentHTML('beforeend', photographeGalerieVideo);
+  // Ajouter l'article à la galerie
+  sectionGalerie.insertAdjacentHTML('beforeend', photographeGalerie);
+};
 
-  // Récupérer l'élément vidéo qu'on vient d'insérer
-  const videoElement = sectionGalerie.lastElementChild.querySelector('video');
-
-  // Désactiver toute interaction sur la vidéo pour empêcher sa lecture
-  videoElement.style.pointerEvents = 'none';
-}
 
 
 
