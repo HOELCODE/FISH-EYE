@@ -201,7 +201,7 @@ article {
     margin-right: 5px;
 }
 
-.galerie-likes em {
+.galerie-likes i {
     color: #901C1C;
     font-size: 24px;
     cursor: pointer;
