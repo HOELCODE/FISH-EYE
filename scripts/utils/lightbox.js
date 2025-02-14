@@ -112,18 +112,22 @@ const setupImageClickEvents = () => {
     const articleItems = document.querySelectorAll(".galerie-link");
 
     articleItems.forEach((element) => {
-        element.addEventListener('click', (event) => {
-            event.preventDefault();
+        ["click", "keydown"].forEach(eventType => {
+            element.addEventListener(eventType, (event) => {
+                if (eventType === "click" || (eventType === "keydown" && (event.key === "Enter" || event.key === " "))) {
+                    event.preventDefault(); // Empêche le défilement avec la barre espace
 
-            // Vérifier si c'est une image ou une vidéo
-            const mediaElement = element.querySelector("img, video");
-            const titre = mediaElement.tagName === "IMG" ? mediaElement.alt : mediaElement.getAttribute("data-title");
+                    // Vérifier si c'est une image ou une vidéo
+                    const mediaElement = element.querySelector("img, video");
+                    const titre = mediaElement.tagName === "IMG" ? mediaElement.alt : mediaElement.getAttribute("data-title");
 
-            // Trouver l'index correspondant dans le tableau
-            const index = carouselData.findIndex(item => item.title === titre);
-            if (index !== -1) {
-                openLightBox(index);
-            }
+                    // Trouver l'index correspondant dans le tableau
+                    const index = carouselData.findIndex(item => item.title === titre);
+                    if (index !== -1) {
+                        openLightBox(index);
+                    }
+                }
+            });
         });
     });
 };
