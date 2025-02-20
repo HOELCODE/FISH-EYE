@@ -6,16 +6,19 @@ const dropDown = () => {
 
     button.addEventListener('click', () => {
         if (list.style.display === 'none') {
+            console.log('entrez dans dropdown pour afficher la liste');
             list.style.display = 'flex';
-            chevron.classList.remove('fa-chevron-down');
-            chevron.classList.add('fa-chevron-up');
+            chevron.classList.remove('fa-chevron-down');  // Enlève l'ancienne classe
+            chevron.classList.add('fa-chevron-up');       // Ajoute la classe pour l'état "haut"
         } else if (list.style.display === 'flex') {
+            console.log('entrez dans dropdown pour cacher la liste');
             list.style.display = 'none';
             chevron.classList.remove('fa-chevron-up');
-            chevron.classList.add('fa-chevron-down');
+            chevron.classList.add('fa-chevron-down');    
         }
     });
-}
+};
+
 
 // Fonction pour filtrer par date
 const filterDate = () => {
@@ -95,31 +98,66 @@ const affichageChargement = () => {
     filterPopularite();
 }
 
-//Fonction pour afficher en fonction de l'élément cliqué dans la liste déroulante
+// Fonction pour mettre à jour la liste déroulante en masquant l'élément sélectionné
+const updateFilterDropdown = () => {
+    const bouton = document.getElementById("current-filter");
+    const dropdown = document.querySelector("#filter-options");
+
+    // Réinitialiser la liste des options et exclure l'élément sélectionné
+    dropdown.innerHTML = `
+        <li role="option"><button type="button" tabindex="-1">Popularité</button></li>
+        <li role="option"><button type="button" tabindex="-1">Titre</button></li>
+        <li role="option"><button type="button" tabindex="-1">Date</button></li>
+    `;
+
+    const selectedFilter = bouton.innerHTML.trim();
+    const options = dropdown.querySelectorAll('button');
+    options.forEach(option => {
+        if (option.textContent.trim() === selectedFilter) {
+            option.style.display = 'none'; // Masquer l'option sélectionnée
+        }
+    });
+
+    // Réattacher les événements aux nouveaux boutons générés
+    filterPar();
+};
+
+// Fonction qui applique le filtre en fonction de l'élément cliqué
+const filterBy = (filterType) => {
+    const bouton = document.getElementById("current-filter");
+
+    // Appliquer le bon filtre en fonction du texte du bouton cliqué
+    if (filterType === "Popularité") {
+        filterPopularite();
+    } else if (filterType === "Titre") {
+        filterTitre();
+    } else if (filterType === "Date") {
+        filterDate();
+    }
+
+    // Mettre à jour le texte du bouton principal
+    bouton.innerHTML = filterType;
+
+    // Mettre à jour la liste déroulante
+    updateFilterDropdown();
+
+    // Fermer le menu déroulant
+    cacherDropdown();
+};
+
 // Fonction pour afficher en fonction de l'élément cliqué dans la liste déroulante
 const filterPar = () => {
-    const bouton = document.getElementById("current-filter");
     const filtres = document.querySelectorAll(".dropdown-content button");
 
     filtres.forEach(filtre => {
         filtre.addEventListener("click", () => {
             const filterType = filtre.textContent.trim();
-
-            if (filterType === "Popularité") {
-                bouton.innerHTML = "Popularité";
-                filterPopularite();
-            } else if (filterType === "Titre") {
-                bouton.innerHTML = "Titre";
-                filterTitre();
-            } else if (filterType === "Date") {
-                bouton.innerHTML = "Date";
-                filterDate();
-            }
-
-            cacherDropdown();
+            filterBy(filterType); // Appliquer le filtre sélectionné
         });
     });
 };
+
+
 
 
 //Lancement des fonctions
