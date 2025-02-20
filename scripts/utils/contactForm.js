@@ -25,7 +25,7 @@ const closeModal = () => {
         modal.classList.add("modal-close");
         main.style.opacity = "1";
         main.removeAttribute("inert", "");
-    })
+    });
 }
 
 // Vider le formulaire
@@ -37,6 +37,12 @@ const resetForm = () => {
         input.value = "";
     });
 }
+
+// Vérifier l'email avec une regex
+const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+};
 
 // Envoyer le formulaire
 const sendForm = () => {
@@ -50,6 +56,12 @@ const sendForm = () => {
         const lastName = form.querySelector("#nom").value;
         const email = form.querySelector("#email").value;
         const message = form.querySelector("#texte").value;
+
+        // Vérifier si l'email est valide
+        if (!isValidEmail(email)) {
+            alert("Veuillez entrer une adresse email valide.");
+            return;
+        }
 
         // Afficher les données dans la console
         console.log(firstName);
@@ -69,10 +81,9 @@ const sendForm = () => {
         main.style.opacity = "1";
         main.removeAttribute("inert", "");
         getFocus(button);
-
     });     
 };
-    
+
 // Exécuter les fonctions
 displayModal();
 closeModal();
