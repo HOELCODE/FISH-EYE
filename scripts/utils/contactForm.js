@@ -1,5 +1,7 @@
+import { getFocus } from "./focus.js";
+
 // Ouvrir le modal
-export const displayModal = () => {
+const displayModal = () => {
     const modal = document.getElementById("contact-modal");
     const main = document.querySelector("main");
     const button = document.querySelector(".contact_button");
@@ -8,11 +10,12 @@ export const displayModal = () => {
         modal.classList.remove("modal-close");
         modal.classList.add("modal-open");
         main.style.opacity = "0.3";
+        main.setAttribute("inert", "");
     });
 }
 
 // Fermer le modal
-export const closeModal = () => {
+const closeModal = () => {
     const modal = document.getElementById("contact-modal");
     const button = document.querySelector(".close-button");
     const main = document.querySelector("main");
@@ -21,11 +24,12 @@ export const closeModal = () => {
         modal.classList.remove("modal-open");
         modal.classList.add("modal-close");
         main.style.opacity = "1";
+        main.removeAttribute("inert", "");
     })
 }
 
 // Vider le formulaire
-export const resetForm = () => {
+const resetForm = () => {
     const form = document.getElementById("contact-form");
     const inputs = form.querySelectorAll("input, textarea");
 
@@ -35,8 +39,7 @@ export const resetForm = () => {
 }
 
 // Envoyer le formulaire
-// Envoyer le formulaire
-export const sendForm = () => {
+const sendForm = () => {
     const form = document.querySelector("form");
 
     form.addEventListener("submit", (event) => {
@@ -60,15 +63,17 @@ export const sendForm = () => {
         // Fermer le modal
         const modal = document.getElementById("contact-modal");
         const main = document.querySelector("main");
+        const button = document.querySelector(".contact_button");
 
         modal.style.display = "none";
         main.style.opacity = "1";
+        main.removeAttribute("inert", "");
+        getFocus(button);
 
-    });
+    });     
 };
-
-// Exécuter les fonction
+    
+// Exécuter les fonctions
 displayModal();
 closeModal();
 sendForm();
-
