@@ -209,6 +209,11 @@ article {
     cursor: pointer;
 }
 
+.heart-container {
+    border: 0px;
+    background-color: #fff;
+}
+
 /* Galerie */
 
 /*Modal*/

@@ -65,7 +65,7 @@ class MediaFactory {
     return `
       <button class="galerie-link" aria-label="Cliquez pour voir l'image">
         <img class="img-photo" src="assets/photographes/${this.artiste}/${this.collection.image}" 
-          alt="${this.collection.title}" aria-label="Image de ${this.collection.title}">
+          alt="${this.collection.title}" aria-label="Image de ${this.collection.title}" data-date="${this.collection.date}" data-likes="${this.collection.likes}">
       </button>
     `;
   }
@@ -73,7 +73,7 @@ class MediaFactory {
   createVideo() {
     return `
       <button class="galerie-link" aria-label="Cliquez pour voir la video">
-        <video class="img-photo" preload="metadata" data-title="${this.collection.title}" style="pointer-events: none;">
+        <video class="img-photo" preload="metadata" data-title="${this.collection.title}" style="pointer-events: none;" data-date="${this.collection.date}">
           <source src="assets/photographes/${this.artiste}/${this.collection.video}" type="video/mp4">
         </video>
       </button    >
@@ -96,11 +96,11 @@ export const createDomGalerie = (collection, artiste) => {
         <p class="galerie-description" aria-label="Titre de l'œuvre">${collection.title}</p>
         <div class="galerie-likes" aria-label="Nombre de likes">
           <span class="galerie-like" aria-label="Nombre de likes">${collection.likes}</span>
-          <div class="heart-container" aria-hidden="true">
-            <i class="fa-solid fa-heart" aria-label="Icône de cœur pour les likes"></i>
-          </div>
+          <button class="heart-container" role="button" tabindex="0" aria-label="Cliquez pour aimer l'œuvre">
+            <i class="fa-regular fa-heart" aria-label="Icône de cœur pour les likes"></i>
+          </button> 
         </div>
-      </div>
+      </div>    
     </article>
   `;
 

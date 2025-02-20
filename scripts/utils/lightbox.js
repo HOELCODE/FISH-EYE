@@ -37,11 +37,11 @@ const updateCarousel = (index) => {
 
     let mediaElement = item.type === "image"
         ? `<img class="img-carousel" src="${item.src}" alt="${item.title}" tabindex="0">`
-        : `<video class="video-carousel" controls autoplay tabindex="0"><source src="${item.src}" type="video/mp4"></video>`;
+        : `<video class="video-carousel" controls autoplay  ><source src="${item.src}" type="video/mp4"></video>`;
 
     mediaContainer.innerHTML = `
         ${mediaElement}
-        <span class="title-carousel" tabindex="0">${item.title}</span>
+        <span class="title-carousel">${item.title}</span>   
     `;
 
     // Mettre le focus sur l'élément média pour éviter que le lecteur d'écran ne lise autre chose

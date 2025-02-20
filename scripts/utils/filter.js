@@ -17,6 +17,26 @@ const dropDown = () => {
     });
 }
 
+// Fonction pour filtrer par date
+const filterDate = () => {
+    const galerie = document.querySelector(".galerie");
+    if (!galerie) return;
+
+    // Récupère tous les articles et les convertit en tableau
+    const articles = Array.from(galerie.getElementsByClassName("galerie-article"));
+
+    // Trie les articles du plus récent au plus ancien
+    articles.sort((a, b) => {
+        const dateA = new Date(a.querySelector(".img-photo").dataset.date);
+        const dateB = new Date(b.querySelector(".img-photo").dataset.date);
+        return dateB - dateA; // Tri décroissant (du plus récent au plus ancien)
+    });
+
+    // Réorganise les articles dans la div "galerie"
+    articles.forEach(article => galerie.appendChild(article));
+};
+
+
 //fonction pour filter par popularitérité
 const filterPopularite = () => {
     const galerie = document.querySelector(".galerie");
@@ -76,26 +96,31 @@ const affichageChargement = () => {
 }
 
 //Fonction pour afficher en fonction de l'élément cliqué dans la liste déroulante
+// Fonction pour afficher en fonction de l'élément cliqué dans la liste déroulante
 const filterPar = () => {
-    const bouton = document.querySelector("#current-filter");
-    const filtre = document.querySelector(".dropdown-content button");
+    const bouton = document.getElementById("current-filter");
+    const filtres = document.querySelectorAll(".dropdown-content button");
 
-    //ecouter le click sur filtre
-    filtre.addEventListener("click", () => {
+    filtres.forEach(filtre => {
+        filtre.addEventListener("click", () => {
+            const filterType = filtre.textContent.trim();
 
-        if (bouton.textContent.includes("Popularité")) {
-            bouton.innerHTML = "Titre";
-            filtre.innerHTML = "Popularité";
-            filterTitre();
+            if (filterType === "Popularité") {
+                bouton.innerHTML = "Popularité";
+                filterPopularite();
+            } else if (filterType === "Titre") {
+                bouton.innerHTML = "Titre";
+                filterTitre();
+            } else if (filterType === "Date") {
+                bouton.innerHTML = "Date";
+                filterDate();
+            }
+
             cacherDropdown();
-        } else {
-            bouton.innerHTML = "Popularité";
-            filtre.innerHTML = "Titre";
-            filterPopularite();
-            cacherDropdown();
-        }
+        });
     });
-}
+};
+
 
 //Lancement des fonctions
 dropDown();
