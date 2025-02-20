@@ -36,14 +36,18 @@ const updateCarousel = (index) => {
     currentIndex = index;
 
     let mediaElement = item.type === "image"
-        ? `<img class="img-carousel" src="${item.src}" alt="${item.title}">`
-        : `<video class="video-carousel" controls autoplay><source src="${item.src}" type="video/mp4"></video>`;
+        ? `<img class="img-carousel" src="${item.src}" alt="${item.title}" tabindex="0">`
+        : `<video class="video-carousel" controls autoplay tabindex="0"><source src="${item.src}" type="video/mp4"></video>`;
 
     mediaContainer.innerHTML = `
         ${mediaElement}
-        <span class="title-carousel">${item.title}</span>
+        <span class="title-carousel" tabindex="0">${item.title}</span>
     `;
+
+    // Mettre le focus sur l'élément média pour éviter que le lecteur d'écran ne lise autre chose
+    mediaContainer.querySelector(item.type === "image" ? "img" : "video").focus();
 };
+
 
 // Gestion des boutons de navigation
 document.querySelector(".prev-btn").addEventListener("click", () => {
@@ -84,6 +88,10 @@ const closeLightBox = () => {
     const lightBox = document.querySelector("#lightbox");
     const carousel = document.querySelector(".carousel");
 
+    document.querySelector("main").setAttribute("aria-hidden", "false");
+document.querySelector("#lightbox").setAttribute("aria-hidden", "true");
+
+
     lightBox.classList.remove("lightbox-open");
     carousel.classList.remove("carousel-open");
     carousel.classList.add("carousel-close");
@@ -97,6 +105,10 @@ const openLightBox = (index) => {
     const carousel = document.querySelector(".carousel");
     const lightBox = document.querySelector("#lightbox");
 
+    document.querySelector("main").setAttribute("aria-hidden", "true");
+document.querySelector("#lightbox").setAttribute("aria-hidden", "false");
+
+
     lightBox.classList.add("lightbox-open");
     carousel.classList.remove("carousel-close");
     carousel.classList.add("carousel-open");
@@ -104,7 +116,12 @@ const openLightBox = (index) => {
 
     // Ajouter l'écouteur clavier quand la lightbox est ouverte
     document.addEventListener("keydown", keyboardNavigation);
+
+    // Mettre le focus sur le conteneur de l'image affichée
+    document.querySelector(".img-title-carousel-container").setAttribute("tabindex", "-1");
+    document.querySelector(".img-title-carousel-container").focus();
 };
+
 
 
 // Ajouter l'écouteur d'événements aux images de la galerie
