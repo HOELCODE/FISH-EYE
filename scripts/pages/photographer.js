@@ -21,7 +21,7 @@ export const getMedia = async () => {
             throw new Error("Pas de réponse");
         }
         const data = await response.json();
-        return data.media;  // Retourner uniquement la partie media
+        return data.media;  
     } catch (error) {
         console.error("Erreur lors du fetch", error);
     }
@@ -32,7 +32,7 @@ export const getGalerie = async () => {
     const media = await getMedia();
     const { photographers } = await getPhotographers();
     const params = new URLSearchParams(window.location.search);
-    const id = parseInt(params.get('id')); // Convertir en entier
+    const id = parseInt(params.get('id'));
 
     media.forEach(element => {
         if (element.photographerId === id) {

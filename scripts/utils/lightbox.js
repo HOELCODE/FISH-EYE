@@ -22,13 +22,13 @@ const getImages = async () => {
                 title: element.title
             };
         })
-        .filter(item => item !== null); // Supprimer les entrées nulles
+        .filter(item => item !== null);
 };
 
 // Mettre à jour le carrousel
 const updateCarousel = (index) => {
     const mediaContainer = document.querySelector(".img-title-carousel-container");
-    mediaContainer.innerHTML = ""; // Vider le conteneur avant d'ajouter un nouvel élément
+    mediaContainer.innerHTML = "";
 
     if (carouselData.length === 0) return;
 
@@ -44,7 +44,6 @@ const updateCarousel = (index) => {
         <span class="title-carousel">${item.title}</span>   
     `;
 
-    // Mettre le focus sur l'élément média pour éviter que le lecteur d'écran ne lise autre chose
     mediaContainer.querySelector(item.type === "image" ? "img" : "video").focus();
 };
 
@@ -89,7 +88,7 @@ const closeLightBox = () => {
     const carousel = document.querySelector(".carousel");
 
     document.querySelector("main").setAttribute("aria-hidden", "false");
-document.querySelector("#lightbox").setAttribute("aria-hidden", "true");
+    document.querySelector("#lightbox").setAttribute("aria-hidden", "true");
 
 
     lightBox.classList.remove("lightbox-open");
@@ -106,7 +105,7 @@ const openLightBox = (index) => {
     const lightBox = document.querySelector("#lightbox");
 
     document.querySelector("main").setAttribute("aria-hidden", "true");
-document.querySelector("#lightbox").setAttribute("aria-hidden", "false");
+    document.querySelector("#lightbox").setAttribute("aria-hidden", "false");
 
 
     lightBox.classList.add("lightbox-open");

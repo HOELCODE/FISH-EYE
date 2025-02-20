@@ -49,7 +49,7 @@ const sendForm = () => {
     const form = document.querySelector("form");
 
     form.addEventListener("submit", (event) => {
-        event.preventDefault(); // Empêche le rechargement de la page
+        event.preventDefault(); 
 
         // Récupérer les valeurs des champs
         const firstName = form.querySelector("#prenom").value;

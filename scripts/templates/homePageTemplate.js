@@ -10,15 +10,15 @@ export const photographerTemplate = (data) => {
 
         //Photographer card 
         const photogrpaherCard = `
-<a href="photographer.html?id=${id}" aria-label="Voir le profil du photographe ${name}">
-  <img src="${picture}" alt="Photo de ${name}" aria-label="Portrait de ${name}">
-  <h2>${name}</h2>
-</a>
-<div aria-label="Informations du photographe">
-  <h3 aria-label="Ville et pays">${city}, ${country}</h3>
-  <p aria-label="Slogan du photographe">${tagline}</p>
-  <span aria-label="Prix du photographe">${price}€/jour</span>
-</div>
+          <a href="photographer.html?id=${id}" aria-label="Voir le profil du photographe ${name}">
+            <img src="${picture}" alt="Photo de ${name}" aria-label="Portrait de ${name}">
+            <h2>${name}</h2>
+          </a>
+          <div aria-label="Informations du photographe">
+            <h3 aria-label="Ville et pays">${city}, ${country}</h3>
+            <p aria-label="Slogan du photographe">${tagline}</p>
+            <span aria-label="Prix du photographe">${price}€/jour</span>
+          </div>
         `
 
         //Associer Photographer card à article

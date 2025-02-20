@@ -8,8 +8,8 @@ const dropDown = () => {
         if (list.style.display === 'none') {
             console.log('entrez dans dropdown pour afficher la liste');
             list.style.display = 'flex';
-            chevron.classList.remove('fa-chevron-down');  // Enlève l'ancienne classe
-            chevron.classList.add('fa-chevron-up');       // Ajoute la classe pour l'état "haut"
+            chevron.classList.remove('fa-chevron-down'); 
+            chevron.classList.add('fa-chevron-up');       
         } else if (list.style.display === 'flex') {
             console.log('entrez dans dropdown pour cacher la liste');
             list.style.display = 'none';
@@ -25,17 +25,16 @@ const filterDate = () => {
     const galerie = document.querySelector(".galerie");
     if (!galerie) return;
 
-    // Récupère tous les articles et les convertit en tableau
     const articles = Array.from(galerie.getElementsByClassName("galerie-article"));
 
-    // Trie les articles du plus récent au plus ancien
+    // Trie
     articles.sort((a, b) => {
         const dateA = new Date(a.querySelector(".img-photo").dataset.date);
         const dateB = new Date(b.querySelector(".img-photo").dataset.date);
-        return dateB - dateA; // Tri décroissant (du plus récent au plus ancien)
+        return dateB - dateA; 
     });
 
-    // Réorganise les articles dans la div "galerie"
+    // Réorganise les articles
     articles.forEach(article => galerie.appendChild(article));
 };
 
@@ -45,17 +44,16 @@ const filterPopularite = () => {
     const galerie = document.querySelector(".galerie");
     if (!galerie) return;
 
-    // Récupère les articles et convertit la collection en tableau
     const articles = Array.from(galerie.getElementsByClassName("galerie-article"));
 
-    // Trie les articles du plus populaire au moins populaire
+    // Trie
     articles.sort((a, b) => {
         const likesA = parseInt(a.querySelector(".galerie-like").textContent, 10);
         const likesB = parseInt(b.querySelector(".galerie-like").textContent, 10);
         return likesB - likesA;
     });
 
-    // Réorganise les articles dans la div en les réinsérant dans le nouvel ordre
+    // Réorganise les articles
     articles.forEach(article => galerie.appendChild(article));
 
 }
@@ -65,17 +63,16 @@ const filterTitre = () => {
     const galerie = document.querySelector(".galerie");
     if (!galerie) return;
 
-    // Récupère tous les articles et les convertit en tableau
     const articles = Array.from(galerie.getElementsByClassName("galerie-article"));
 
-    // Trie les articles par ordre alphabétique en se basant sur la description
+    // Trie les articles
     articles.sort((a, b) => {
         const titleA = a.querySelector(".galerie-description").textContent.trim().toLowerCase();
         const titleB = b.querySelector(".galerie-description").textContent.trim().toLowerCase();
         return titleA.localeCompare(titleB);
     });
 
-    // Réorganise les articles dans la div "galerie"
+    // Trie
     articles.forEach(article => galerie.appendChild(article));
 }
 
@@ -114,7 +111,7 @@ const updateFilterDropdown = () => {
     const options = dropdown.querySelectorAll('button');
     options.forEach(option => {
         if (option.textContent.trim() === selectedFilter) {
-            option.style.display = 'none'; // Masquer l'option sélectionnée
+            option.style.display = 'none';
         }
     });
 
@@ -152,7 +149,7 @@ const filterPar = () => {
     filtres.forEach(filtre => {
         filtre.addEventListener("click", () => {
             const filterType = filtre.textContent.trim();
-            filterBy(filterType); // Appliquer le filtre sélectionné
+            filterBy(filterType);
         });
     });
 };
