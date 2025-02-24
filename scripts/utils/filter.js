@@ -154,9 +154,6 @@ const filterPar = () => {
     });
 };
 
-
-
-
 //Lancement des fonctions
 dropDown();
 document.addEventListener("galleryLoaded", affichageChargement);
